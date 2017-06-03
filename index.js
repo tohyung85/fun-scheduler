@@ -6,11 +6,9 @@ const router = require('./router');
 const cors = require('cors');
 
 const app = express();
-//DB Setup
-//2nd auth = <dbname>
 
 //App Setup
-//1. Wiring middleware
+//Wiring middleware
 app.use(morgan('combined')); // logging service
 app.use(cors()); // allow access for cors
 app.use(bodyParser.json({type:'*/*'})); // parse request
@@ -18,8 +16,6 @@ router(app); //Pass express to router
 
 
 // Server Setup - get express to talk to outside world
-//
-
 const port = process.env.PORT || 3090;
 const server = http.createServer(app); // Create server and forward to express
 server.listen(port);
