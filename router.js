@@ -1,5 +1,6 @@
 const db = require('./services/database');
 const User = require('./controllers/user_controller');
+const Event = require('./controllers/event_controller');
 const passportService = require('./services/passport');
 // Require will run the passport.use(jwtStrategy) and so give passport the configurations
 // Note passport is a singleton
@@ -15,7 +16,9 @@ module.exports = function(app) {
         res.status(200).send('Access granted!');
     });
 
-    app.get('/users/:email', User.getUser);
+    app.post('/events', Event.createEvent);
+
+    //app.get('/users/:email', User.getUser);
     app.post('/users/signin', requireSignin, Authentication.signin);
     app.post('/users/signup', Authentication.signup);
 }

@@ -33,11 +33,9 @@ const jwtOptions = {
 
 // Create JWT Strategy
 const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done){
-    console.log(payload.sub);
     User.getUser(payload.sub)
     .then(data => {
         const user = data[0];
-        console.log('user', user);
         if(user) {
             done(null, user);
         } else {
